@@ -1,5 +1,5 @@
 # Dependencies (you should only include package.json to maintain dependencies, not these)
-/node_modules
+node_modules/
 /client/node_modules
 /common/node_modules
 /server/node_modules
