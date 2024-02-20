@@ -43,9 +43,8 @@ function App() {
       const now = Date.now()/1000;
       t.timeDiff = stime - (now + ctime)/2;
       t.ping = now - ctime;
-
       // t.ping = 0.4;
-      // console.log("ping: " + t.ping + ", timeDiff: " + t.timeDiff);
+      console.log("ping: " + t.ping + ", timeDiff: " + t.timeDiff);
     });
     return ()=>{
       ws.packetHandler.removeAllMessageListeners();
