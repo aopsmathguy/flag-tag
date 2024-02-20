@@ -1,0 +1,4 @@
+next steps:
+create Game class that each room has one of common
+implement simple game logic
+create canvas component in react

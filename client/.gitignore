@@ -1,0 +1,33 @@
+# Dependencies (you should only include package.json to maintain dependencies, not these)
+/node_modules
+/client/node_modules
+/common/node_modules
+/server/node_modules
+
+# Build directory 
+/dist/
+/build/
+/client/build/
+
+# Debug logs
+npm-debug.log
+yarn-error.log
+yarn-debug.log
+
+# IDE / Editor
+/.idea
+/.vscode
+
+# Environment variables
+.env
+.env.development
+.env.production
+
+# Cache files
+.cache
+.DS_Store
+
+# Others 
+/public/hot
+/public/dev
+/coverage
