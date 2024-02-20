@@ -18,7 +18,6 @@ function App() {
 
   //setup packetsender packethandler and packet listener functions
   useEffect(function(){
-    console.log("mount");
     ws.addEventListener("open", (event) => {
       setConnecting(false);
     });
@@ -44,7 +43,7 @@ function App() {
       t.timeDiff = stime - (now + ctime)/2;
       t.ping = now - ctime;
       // t.ping = 0.4;
-      console.log("ping: " + t.ping + ", timeDiff: " + t.timeDiff);
+      // console.log("ping: " + t.ping + ", timeDiff: " + t.timeDiff);
     });
     return ()=>{
       ws.packetHandler.removeAllMessageListeners();
@@ -67,7 +66,7 @@ function App() {
     return () => {
       clearTimeout(timerId);
     }
-  }, []);
+  }, [connecting]);
   
   useEffect(function(){
     const keydown = (e)=>{
