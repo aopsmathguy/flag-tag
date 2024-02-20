@@ -12,7 +12,6 @@ function Canvas() {
         const ctx = canvas.getContext('2d');
         let animateId = 0;
         const animate = function(){
-          console.log("frame");
           animateId = requestAnimationFrame(animate);
           canvas.width = window.innerWidth;
           canvas.height = window.innerHeight;

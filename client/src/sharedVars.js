@@ -23,7 +23,7 @@ export const game = {
     inputs : 0x00000000,
     inputManager : undefined
 }
-export const ws = window.ws = new WebSocket("ws://localhost:3001/websocket/wsserver");
+export const ws = window.ws = new WebSocket(c.WS);
 ws.binaryType = 'arraybuffer';
 ws.packetSender = new PacketSender(ws);
 ws.packetHandler = new PacketHandler(ws);

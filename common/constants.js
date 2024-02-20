@@ -1,4 +1,5 @@
 export const c = {
+    WS : 'wss://flag-tag.onrender.com',
     TIME_STEP : 0.008,
     UPDATE_TIME : 0.05,
     WALL_PROPERTIES : {
