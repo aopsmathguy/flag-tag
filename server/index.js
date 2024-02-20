@@ -33,6 +33,9 @@ wss.on("connection", (ws)=>{
     let game = undefined;
     let lastInputTime = 0;
     ws.packetHandler.onMessage(EVENTCODES.JOIN, (data)=>{
+        if (room == data.roomcode){
+            return;
+        }
         if (player && room){
             gameMan.leave(room, player);
         }
