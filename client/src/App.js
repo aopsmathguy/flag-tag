@@ -19,12 +19,14 @@ function App() {
   //setup packetsender packethandler and packet listener functions
   useEffect(function(){
     console.log("mount");
+    ws.addEventListener("open", (event) => {
+      setConnecting(false);
+    });
     ws.packetHandler.onMessage(EVENTCODES.PID, (data)=>{
       game.PID = data.PID;
     });
     ws.packetHandler.onMessage(EVENTCODES.GAME_INITIAL, (data)=>{
       game.current = Game.MessageManager.createGameInitialization(data);
-      setConnecting(false);
     });
     ws.packetHandler.onMessage(EVENTCODES.ADD_PLAYER, (data)=>{
       Game.MessageManager.addPlayerInitialization(game.current, data);
@@ -95,33 +97,35 @@ function App() {
   
   return (
     <div className="App">
-      {connecting ? (<LoadingSpinner ></LoadingSpinner>) : 
-        (showUI ? (<div className = "ui">
-          <h3>Join A Chat</h3>
-          <input type="text"
-            placeholder="Name"
-            defaultValue={username}
-            onChange={(event) => {
-              setUsername(event.target.value);
-            }}></input>
-          <input type="text"
-            placeholder="Room Code"
-            defaultValue={room}
-            onChange={(event) => {
-              setRoom(event.target.value);
-            }}></input>
-          <button onClick={joinRoom}>Join</button>
-          <Settings defaultKeyBinds = {{
-            'UP': 'w',
-            'DOWN': 's',
-            'LEFT': 'a',
-            'RIGHT': 'd'
-          }}></Settings>
-        </div>) : null)
-        (<Canvas ></Canvas>)
+      {connecting ? (
+        <LoadingSpinner />
+        ) : 
+        showUI ? (
+          <div className = "ui">
+            <h3>Join A Chat</h3>
+            <input type="text"
+              placeholder="Name"
+              defaultValue={username}
+              onChange={(event) => { setUsername(event.target.value); }}
+            />
+            <input type="text"
+              placeholder="Room Code"
+              defaultValue={room}
+              onChange={(event) => { setRoom(event.target.value); }}
+            />
+            <button onClick={joinRoom}>Join</button>
+            <Settings defaultKeyBinds = {{
+              'UP': 'w',
+              'DOWN': 's',
+              'LEFT': 'a',
+              'RIGHT': 'd'
+            }}
+            />
+          </div>
+        ) : null
       }
+      <Canvas />
     </div>
   );
 }
-
 export default App;
