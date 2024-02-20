@@ -86,6 +86,6 @@ wss.on("connection", (ws)=>{
     setTimeout(broad_cast, c.UPDATE_TIME * 1000);
 })();
 
-server.listen(3001, ()=>{
+server.listen(process.env.PORT || 3001, ()=>{
     console.log("SERVER RUNNING")
 });
