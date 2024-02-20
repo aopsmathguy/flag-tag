@@ -8,12 +8,13 @@ const Settings = ({defaultKeyBinds}) => {
     const [currentSetting, setCurrentSetting] = useState(null);
     useEffect(()=>{
         inputs.updateKeyToFunction(keyBinds);
-    }, []);
+    }, [keyBinds]);
     const handleKeyDown = e => {
         if (currentSetting) {
-            keyBinds[currentSetting] = e.key;
+            setKeyBinds({...keyBinds,
+                [currentSetting] : e.key
+            });
             setCurrentSetting(null);
-            // inputs.updateKeyToFunction(keyBinds);
             console.log("updated keybinds");
         }
     };

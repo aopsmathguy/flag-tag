@@ -100,29 +100,27 @@ function App() {
       {connecting ? (
         <LoadingSpinner />
         ) : 
-        showUI ? (
-          <div className = "ui">
-            <h3>Join A Chat</h3>
-            <input type="text"
-              placeholder="Name"
-              defaultValue={username}
-              onChange={(event) => { setUsername(event.target.value); }}
-            />
-            <input type="text"
-              placeholder="Room Code"
-              defaultValue={room}
-              onChange={(event) => { setRoom(event.target.value); }}
-            />
-            <button onClick={joinRoom}>Join</button>
-            <Settings defaultKeyBinds = {{
-              'UP': 'w',
-              'DOWN': 's',
-              'LEFT': 'a',
-              'RIGHT': 'd'
-            }}
-            />
-          </div>
-        ) : null
+        <div className = "ui" style={{ display: showUI ? 'block' : 'none'}}>
+          <h3>Join A Chat</h3>
+          <input type="text"
+            placeholder="Name"
+            defaultValue={username}
+            onChange={(event) => { setUsername(event.target.value); }}
+          />
+          <input type="text"
+            placeholder="Room Code"
+            defaultValue={room}
+            onChange={(event) => { setRoom(event.target.value); }}
+          />
+          <button onClick={joinRoom}>Join</button>
+          <Settings defaultKeyBinds = {{
+            'UP': 'w',
+            'DOWN': 's',
+            'LEFT': 'a',
+            'RIGHT': 'd'
+          }}
+          />
+        </div>
       }
       <Canvas />
     </div>
