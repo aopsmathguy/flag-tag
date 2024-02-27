@@ -23,11 +23,11 @@ function Canvas() {
             const player = game.current.players[game.PID];
             const delt = (Date.now()/1000 + t.timeDiff) - game.current.f2world.time;
             ctx.translate(canvas.width/2, canvas.height/2);
-            ctx.scale(20,20);
+            ctx.scale(5,5);
             const {position} = player.f2body.createPlacement(delt);
             // ctx.rotate(-angle);
             ctx.translate(-position.x, -position.y);
-            ctx.lineWidth = 0.1;
+            ctx.lineWidth = 0.4;
             ctx.fillStyle = "rgba(0,0,0,0)";
             game.current.f2world.display(ctx, delt);
             ctx.restore();

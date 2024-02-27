@@ -35,7 +35,8 @@ const packetSchemas = {
             {
                 PID : 'varuint',
                 cfg : {
-                    color : 'string'
+                    color : 'string',
+                    maxSteer : 'float32'
                 },
                 inputs : 'uint8'
             }
@@ -45,7 +46,8 @@ const packetSchemas = {
         {
             PID : 'varuint',
             cfg : {
-                color : 'string'
+                color : 'string',
+                maxSteer : 'float32'
             },
             inputs : 'uint8'
         }

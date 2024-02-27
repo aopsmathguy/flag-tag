@@ -52,11 +52,11 @@ export function createWorld(timeNow){
     var world = new f2.World({
         time : timeNow,
         gravity : 0,
-        gridSize : 2
+        gridSize : 9
     });
-    world.addBody(createBounds(400,150));
-    for (var i = 0; i < 700; i++){
-        var body = createBox(4, new f2.Vec2(rng.next() * 400, rng.next() * 150));
+    world.addBody(createBounds(400,400));
+    for (var i = 0; i < 100; i++){
+        var body = createBox(6, new f2.Vec2(rng.next() * 400, rng.next() * 400));
         world.addBody(body);
     }
     return world;

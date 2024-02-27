@@ -18,9 +18,13 @@ function App() {
 
   //setup packetsender packethandler and packet listener functions
   useEffect(function(){
-    ws.addEventListener("open", (event) => {
+    if (ws.readyState != 1){
+      ws.addEventListener("open", (event) => {
+        setConnecting(false);
+      });
+    } else{
       setConnecting(false);
-    });
+    }
     ws.packetHandler.onMessage(EVENTCODES.PID, (data)=>{
       game.PID = data.PID;
     });
@@ -115,7 +119,8 @@ function App() {
             'UP': 'w',
             'DOWN': 's',
             'LEFT': 'a',
-            'RIGHT': 'd'
+            'RIGHT': 'd',
+            'BRAKE': ' '
           }}
           />
         </div>
