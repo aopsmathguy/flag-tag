@@ -79,3 +79,28 @@ export class PriorityQueue {
         }
     }
 }
+export function createInterpolator(points) {
+    // Ensure points are sorted by x values
+    points.sort((a, b) => a[0] - b[0]);
+    
+    return function(x) {
+      // Use binary search to find the index of the largest value less than or equal to x
+      let low = 0, high = points.length - 1;
+      while (low !== high) {
+        const mid = Math.floor((low + high + 1) / 2);
+        if (points[mid][0] <= x) {
+          low = mid;
+        } else {
+          high = mid - 1;
+        }
+      }
+  
+      // Interpolate between the found point and the next point
+      const x0 = points[low][0], y0 = points[low][1];
+      const x1 = points[low+1][0], y1 = points[low+1][1];
+       
+      // Linear interpolation formula: y = y0 + ((y1 - y0) * ((x - x0) / (x1 - x0)))
+      const y = y0 + ((y1 - y0) * ((x - x0) / (x1 - x0)));
+      return y;
+    };
+  }

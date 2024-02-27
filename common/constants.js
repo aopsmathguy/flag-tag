@@ -1,6 +1,6 @@
 export const c = {
-    // WS : 'ws://localhost:3001',
-    WS : 'wss://flag-tag.onrender.com',
+    WS : 'ws://localhost:3001',
+    // WS : 'wss://flag-tag.onrender.com',
     TIME_STEP : 0.008,
     UPDATE_TIME : 0.05,
     WALL_PROPERTIES : {
@@ -33,6 +33,15 @@ export const c = {
     GRAVITY : 32,
     PLAYER_HALF_AXLE : 3,
     PLAYER_GRIP : 40,
+    PLAYER_GRIP_CURVE : [
+        [0,0],
+        [0.2,0.9],
+        [0.3,1],
+        [0.4,1],
+        [0.6,0.9],
+        [1,0.8],
+        [1.6,0.7]
+    ],
     PLAYER_ACC : 14,
     PLAYER_DRAG : 1,
     INPUTS : {

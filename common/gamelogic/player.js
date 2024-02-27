@@ -1,5 +1,6 @@
 import { f2 } from '../fisyx2d.js';
-import { c } from '../constants.js'
+import { c } from '../constants.js';
+import { createInterpolator } from '../utils.js';
 export class Player{
     cfg;
     PID;
@@ -76,7 +77,12 @@ export class Player{
             const wheelNormal = f2.Vec2.fromPolar(1, wheelAngle + Math.PI/2);
             const invEffMass = 1/this.f2body.mass + wheelNormal.cross(drRot) ** 2 / this.f2body.inertia;
             const impulseNeededToStop = velP.dot(wheelNormal)/invEffMass;
-            const maxImpulse = dt * g * c.PLAYER_GRIP * 5 * Math.min(0.2,Math.max(-0.2,Math.sin(angleAttack)));
+
+            const angleSign = (angleAttack >= 0 ? 1 : -1);
+            const absAngle = Math.abs(angleAttack);
+            const acuteAngle = (absAngle > Math.PI/2 ? Math.PI - absAngle : absAngle);
+
+            const maxImpulse = angleSign * dt * g * c.PLAYER_GRIP * this.cfg.gripCurveFunc(acuteAngle);
             let impulse = 0;
             if (Math.abs(maxImpulse) < Math.abs(impulseNeededToStop)){
                 impulse = maxImpulse;
@@ -85,16 +91,21 @@ export class Player{
             }
             this.f2body.applyImpulse(wheelNormal.multiply(-impulse), drRot);
         }else{
-            this.f2body.applyImpulse(velP.normalize().multiply(-dt * g * c.PLAYER_GRIP), drRot);
+            this.f2body.applyImpulse(velP.normalize().multiply(-dt * g * c.PLAYER_GRIP * this.cfg.gripCurveFunc(Math.PI/2)), drRot);
         }
     }
 }
 Player.Config = class{
     maxSteer;
+    gripCurve;
+    gripCurveFunc;
     color;
     constructor(cfg){
         cfg = cfg || {};
         this.maxSteer = cfg.maxSteer || 0.5;
+        this.gripCurve = cfg.gripCurve || c.PLAYER_GRIP_CURVE;
+        this.gripCurveFunc = createInterpolator(this.gripCurve);
+
         this.color = cfg.color || '#0000ff';
     }
 }

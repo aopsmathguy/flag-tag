@@ -55,7 +55,7 @@ export function createWorld(timeNow){
         gridSize : 9
     });
     world.addBody(createBounds(400,400));
-    for (var i = 0; i < 100; i++){
+    for (var i = 0; i < 10; i++){
         var body = createBox(6, new f2.Vec2(rng.next() * 400, rng.next() * 400));
         world.addBody(body);
     }
