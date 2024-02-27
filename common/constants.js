@@ -1,6 +1,6 @@
 export const c = {
-    WS : 'ws://localhost:3001',
-    // WS : 'wss://flag-tag.onrender.com',
+    // WS : 'ws://localhost:3001',
+    WS : 'wss://flag-tag.onrender.com',
     TIME_STEP : 0.008,
     UPDATE_TIME : 0.05,
     WALL_PROPERTIES : {
